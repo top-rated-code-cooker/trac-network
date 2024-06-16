@@ -1,0 +1,157 @@
+@import url(./assets/css/icons.css);
+@import url(./assets/css/element-icons.css);
+
+@font-face {
+  font-family: Proto Mono;
+  src: url(./assets/fonts/ProtoMono-Light.otf);
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap
+}
+
+@font-face {
+  font-family: Proto Mono;
+  src: url(./assets/fonts/ProtoMono-Regular.otf);
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap
+}
+
+@font-face {
+  font-family: Proto Mono;
+  src: url(./assets/fonts/ProtoMono-Bold.otf);
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap
+}
+
+@font-face {
+  font-family: Roboto Mono;
+  src: url(./assets/fonts/RobotoMono-Regular.ttf);
+  font-display: swap
+}
+
+@font-face {
+  font-family: IBM Plex Mono;
+  src: url(./assets/fonts/ibm-plex-mono-latin-400-normal.ttf);
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap
+}
+
+@font-face {
+  font-family: IBM Plex Mono;
+  src: url(./assets/fonts/ibm-plex-mono-latin-500-normal.ttf);
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap
+}
+
+@font-face {
+  font-family: IBM Plex Mono;
+  src: url(./assets/fonts/ibm-plex-mono-latin-600-normal.ttf);
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap
+}
+
+@font-face {
+  font-family: IBM Plex Mono;
+  src: url(./assets/fonts/ibm-plex-mono-latin-700-normal.ttf);
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap
+}
+
+@font-face {
+  font-family: Darker Grotesque;
+  src: url(./assets/fonts/darker-grotesque-latin-400-normal.ttf);
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap
+}
+
+@font-face {
+  font-family: Darker Grotesque;
+  src: url(./assets/fonts/darker-grotesque-latin-500-normal.ttf);
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap
+}
+
+@font-face {
+  font-family: Darker Grotesque;
+  src: url(./assets/fonts/darker-grotesque-latin-600-normal.ttf);
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap
+}
+
+@font-face {
+  font-family: Darker Grotesque;
+  src: url(./assets/fonts/darker-grotesque-latin-700-normal.ttf);
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap
+}
+
+@font-face {
+  font-family: Familjen Grotesk;
+  src: url(./assets/fonts/familjen-grotesk-latin-400-normal.ttf);
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap
+}
+
+@font-face {
+  font-family: Familjen Grotesk;
+  src: url(./assets/fonts/familjen-grotesk-latin-500-normal.ttf);
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap
+}
+
+@font-face {
+  font-family: Familjen Grotesk;
+  src: url(./assets/fonts/familjen-grotesk-latin-600-normal.ttf);
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap
+}
+
+@font-face {
+  font-family: Familjen Grotesk;
+  src: url(./assets/fonts/familjen-grotesk-latin-700-normal.ttf);
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap
+}
+
+@font-face {
+  font-family: Kdam Thmor;
+  src: url(./assets/fonts/kdam-thmor-pro-latin-400-normal.ttf);
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap
+}
+
+
+
+html {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100vw;
+}
+
+.dark-theme .dialog {
+  background-color: var(--bg);
+}
+
+.dark-theme .gn-button {
+  border-color: transparent;
+}
+
+.font-gradient1
+{
+  background: linear-gradient(180deg, #FF3398 32.79%, #F7931A 85.45%);
+}
