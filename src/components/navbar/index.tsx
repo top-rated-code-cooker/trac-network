@@ -1,22 +1,21 @@
-import { PropsWithChildren, useEffect, useRef, useState } from "react";
+import {  useRef, useState } from "react";
 import logo from "../../assets/images/LOGO.svg";
 import { usePopper } from "react-popper";
 import "./navbar.css";
 import "./responsive.css";
-import axios from "axios";
 
 interface NavItemProps {
   text: string;
   to: string;
 }
 
-function NavItem(props: NavItemProps) {
-  return (
-    <a className="nav-item text-decoration-none" href={props.to ?? '#'}>
-      <span className="text">{props.text}</span>
-    </a>
-  );
-}
+// function NavItem(props: NavItemProps) {
+//   return (
+//     <a className="nav-item text-decoration-none" href={props.to ?? '#'}>
+//       <span className="text">{props.text}</span>
+//     </a>
+//   );
+// }
 
 function MenuItem(props: NavItemProps) {
   return (
@@ -26,118 +25,118 @@ function MenuItem(props: NavItemProps) {
   );
 }
 
-function GasPopover() {
-  const [visible, setVisible] = useState(false);
-  const referenceElement = useRef(null);
-  const popperElement = useRef(null);
-  const arrowElement = useRef(null);
-  const [feerate, setFeerate] = useState({hourFee: 0, halfHourFee: 0, fastestFee: 0});
-  const { styles, attributes } = usePopper(
-    referenceElement.current,
-    popperElement.current,
-    {
-      modifiers: [
-        { name: "arrow", options: { element: arrowElement.current } },
-      ],
-    }
-  );
+// function GasPopover() {
+//   const [visible, setVisible] = useState(false);
+//   const referenceElement = useRef(null);
+//   const popperElement = useRef(null);
+//   const arrowElement = useRef(null);
+//   const [feerate, setFeerate] = useState({hourFee: 0, halfHourFee: 0, fastestFee: 0});
+//   const { styles, attributes } = usePopper(
+//     referenceElement.current,
+//     popperElement.current,
+//     {
+//       modifiers: [
+//         { name: "arrow", options: { element: arrowElement.current } },
+//       ],
+//     }
+//   );
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await axios.get(`https://mempool.space/api/v1/fees/recommended`);
-        setFeerate(data);
-      } catch (error) {
-        console.log("Server responded with:", error);
-      }
-    };
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const { data } = await axios.get(`https://mempool.space/api/v1/fees/recommended`);
+//         setFeerate(data);
+//       } catch (error) {
+//         console.log("Server responded with:", error);
+//       }
+//     };
 
-    fetchData(); // fetch data immediately
-    const intervalId = setInterval(fetchData, 5000); // fetch data every 30 seconds
+//     fetchData(); // fetch data immediately
+//     const intervalId = setInterval(fetchData, 5000); // fetch data every 30 seconds
 
-    // clean up the interval on component unmount
-    return () => clearInterval(intervalId);
-  }, []);
+//     // clean up the interval on component unmount
+//     return () => clearInterval(intervalId);
+//   }, []);
 
-  return (
-    <>
-      <button
-        className="pill"
-        ref={referenceElement}
-        onMouseEnter={() => setVisible(true)}
-        onMouseLeave={() => setVisible(false)}
-      >
-        <i className="iconfont icon-gas1"></i>
-        <span>{feerate.halfHourFee}</span>
-      </button>
-      <div
-        className={`gas-popover popover ${visible ? "is-visible" : "hidden"}`}
-        style={styles.popper}
-        ref={popperElement}
-        {...attributes.popper}
-      >
-        <div className="arrow" style={styles.arrow} ref={arrowElement}></div>
-        <div className="popover-content">
-          <div className="gas-list">
-            <div className="gas-item">
-              <i className="nav-rate-icon iconfont icon-bike"></i>
-              <span className="nav-rate-text">Low: {feerate.hourFee} sats/vB</span>
-            </div>
-            <div className="gas-item">
-              <i className="nav-rate-icon iconfont icon-plane1"></i>
-              <span className="nav-rate-text">Medium: {feerate.halfHourFee} sats/vB</span>
-            </div>
-            <div className="gas-item">
-              <i className="nav-rate-icon iconfont icon-flashlight-line"></i>
-              <span className="nav-rate-text">High: {feerate.fastestFee} sats/vB</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}
+//   return (
+//     <>
+//       <button
+//         className="pill"
+//         ref={referenceElement}
+//         onMouseEnter={() => setVisible(true)}
+//         onMouseLeave={() => setVisible(false)}
+//       >
+//         <i className="iconfont icon-gas1"></i>
+//         <span>{feerate.halfHourFee}</span>
+//       </button>
+//       <div
+//         className={`gas-popover popover ${visible ? "is-visible" : "hidden"}`}
+//         style={styles.popper}
+//         ref={popperElement}
+//         {...attributes.popper}
+//       >
+//         <div className="arrow" style={styles.arrow} ref={arrowElement}></div>
+//         <div className="popover-content">
+//           <div className="gas-list">
+//             <div className="gas-item">
+//               <i className="nav-rate-icon iconfont icon-bike"></i>
+//               <span className="nav-rate-text">Low: {feerate.hourFee} sats/vB</span>
+//             </div>
+//             <div className="gas-item">
+//               <i className="nav-rate-icon iconfont icon-plane1"></i>
+//               <span className="nav-rate-text">Medium: {feerate.halfHourFee} sats/vB</span>
+//             </div>
+//             <div className="gas-item">
+//               <i className="nav-rate-icon iconfont icon-flashlight-line"></i>
+//               <span className="nav-rate-text">High: {feerate.fastestFee} sats/vB</span>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </>
+//   );
+// }
 
-interface InfoPopoverProps extends PropsWithChildren {
-  title: string;
-}
+// interface InfoPopoverProps extends PropsWithChildren {
+//   title: string;
+// }
 
-function InfoPopover({ title, children }: InfoPopoverProps) {
-  const [visible, setVisible] = useState(false);
-  const referenceElement = useRef(null);
-  const popperElement = useRef(null);
-  const arrowElement = useRef(null);
-  const { styles, attributes } = usePopper(
-    referenceElement.current,
-    popperElement.current,
-    {
-      modifiers: [
-        { name: "arrow", options: { element: arrowElement.current } },
-      ],
-    }
-  );
+// function InfoPopover({ title, children }: InfoPopoverProps) {
+//   const [visible, setVisible] = useState(false);
+//   const referenceElement = useRef(null);
+//   const popperElement = useRef(null);
+//   const arrowElement = useRef(null);
+//   const { styles, attributes } = usePopper(
+//     referenceElement.current,
+//     popperElement.current,
+//     {
+//       modifiers: [
+//         { name: "arrow", options: { element: arrowElement.current } },
+//       ],
+//     }
+//   );
 
-  return (
-    <>
-      <div
-        ref={referenceElement}
-        onMouseEnter={() => setVisible(true)}
-        onMouseLeave={() => setVisible(false)}
-      >
-        {children}
-      </div>
-      <div
-        className={`info-popover popover ${visible ? "is-visible" : "hidden"}`}
-        style={styles.popper}
-        ref={popperElement}
-        {...attributes.popper}
-      >
-        <div className="arrow" style={styles.arrow} ref={arrowElement}></div>
-        <span className="popover-content">{title}</span>
-      </div>
-    </>
-  );
-}
+//   return (
+//     <>
+//       <div
+//         ref={referenceElement}
+//         onMouseEnter={() => setVisible(true)}
+//         onMouseLeave={() => setVisible(false)}
+//       >
+//         {children}
+//       </div>
+//       <div
+//         className={`info-popover popover ${visible ? "is-visible" : "hidden"}`}
+//         style={styles.popper}
+//         ref={popperElement}
+//         {...attributes.popper}
+//       >
+//         <div className="arrow" style={styles.arrow} ref={arrowElement}></div>
+//         <span className="popover-content">{title}</span>
+//       </div>
+//     </>
+//   );
+// }
 
 interface ExtraItemProps {
   title: string;
