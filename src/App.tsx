@@ -1,23 +1,23 @@
 import "./App.css";
-import Navbar from "./components/navbar";
 import { useState } from "react";
-import Alert, { AlertInfo, AlertType } from "./components/alerts";
 import MainFrame from './components/mainframe';
+import Alert, { AlertInfo, AlertType } from "./components/alerts";
+import OnAuthHandler, { LoadingState, DynamicContents, defaultDynContents} from './components/WalletProvider';
 import LoadingModal from './components/modal/loadingModal';
 import WalletListModal from './components/modal/walletlistModal';
-import OnAuthHandler, {SendAssets, LoadingState, DynamicContents, defaultDynContents} from './components/WalletProvider';
-import Footer from "./components/footer";
-import Copyright from "./components/copyright";
+
 function App() {
 	const [isShowWalletList, setIsShowWalletList] = useState(false);
 	const [stateOfLoadingWallet, setStateOfLoadingWallet] = useState({isLoading: false, walletId: '', message: ''});
-	
+
 	const [walletInfo, setWalletInfo] = useState({
 		isConnected: false,
 		walletID: "",
 		address: ""
 	});
 	const [dynContent, setDynContent] = useState(defaultDynContents);
+
+	const [modalOpened, setModalOpened] = useState(false);
 
 	const [alerts, setAlerts] = useState<AlertInfo[]>([]);
 
@@ -28,6 +28,17 @@ function App() {
 			address: ''
 		});		
 		setDynContent(defaultDynContents);
+	}
+
+	function onError(type: AlertType, message: string) {
+		setAlerts((prev) => [
+			...prev,
+			{
+				id: prev.length,
+				type,
+				message,
+			},
+		]);
 	}
 
 	async function OnAuthenticate({isLoading, walletId, message}: LoadingState) {
@@ -53,62 +64,42 @@ function App() {
 		// change state of connected wallet.
 	}
 
-	async function OnSendAsset() {
-		if (dynContent.js == '')
-			return;
-
-		await SendAssets(walletInfo.walletID, dynContent.js);
-	}
-
-	function onError(type: AlertType, message: string) {
-		setAlerts((prev) => [
-			...prev,
-			{
-				id: prev.length,
-				type,
-				message,
-			},
-		]);
-	}
-
 	return (
-		<main className="wrapper dark-theme ">
-			<Navbar
+		<div className="">
+		<div id="page" className="site main-font-family">
+			<MainFrame
 				isConnected = {walletInfo.isConnected}
 				accountAddress = {walletInfo.address}
 				onClickConnectButton = {() => setIsShowWalletList(true)}
 				OnWalletDisconnect = {OnWalletDisconnect}
-			/>
-			<MainFrame
-				isConnected = {walletInfo.isConnected}
-				OnClickConnectButton = {() => setIsShowWalletList(true)}
+				modalOpened = {modalOpened}
+				setModalOpened = {setModalOpened}
 				htmlContent = {dynContent.html}
-				OnSendAsset = {OnSendAsset}
 			/>
-			<Footer/>
-			<Copyright/>
 			<LoadingModal
-				isLoading = {stateOfLoadingWallet.isLoading}
-				walletId = {stateOfLoadingWallet.walletId}
-				message = {stateOfLoadingWallet.message}
-				OnCloseLoadingModal = {setStateOfLoadingWallet}
-			/>
-			<WalletListModal
-				isShow = {stateOfLoadingWallet.isLoading? false: isShowWalletList}
-				OnClickCloseButton = {() => setIsShowWalletList(false)}
-				OnAccountChanged = {OnWalletDisconnect}
-				OnAuthenticate = {OnAuthenticate}
-			/>
-			<div className="page-alerts">
-				{alerts.map((alert) => (
-					<Alert
-						key={alert.id}
-						{...alert}
-						onRemove={(id) => setAlerts((prev) => prev.filter((alert) => alert.id !== id))}
-					/>
-				))}
-			</div>
-		</main>
+					isLoading = {stateOfLoadingWallet.isLoading}
+					walletId = {stateOfLoadingWallet.walletId}
+					message = {stateOfLoadingWallet.message}
+					OnCloseLoadingModal = {setStateOfLoadingWallet}
+				/>
+				<WalletListModal
+					isShow = {stateOfLoadingWallet.isLoading? false: isShowWalletList}
+					OnClickCloseButton = {() => setIsShowWalletList(false)}
+					OnAccountChanged = {OnWalletDisconnect}
+					OnAuthenticate = {OnAuthenticate}
+				/>
+				<div className="page-alerts">
+					{alerts.map((alert) => (
+						<Alert
+							key={alert.id}
+							{...alert}
+							onRemove={(id) => setAlerts((prev) => prev.filter((alert) => alert.id !== id))}
+						/>
+					))}
+				</div>
+			
+		</div>
+		</div>
 	);
 }
 

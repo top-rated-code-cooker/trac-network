@@ -24,7 +24,7 @@ function Footer() {
                         </div>
                     </div>
                     <div className="w-1/3 flex items-end flex-col justify-between pt-5 pb-5 pr-[65px] h-[171px]">
-                        <div className="flex justify-end">
+                    <div className="flex justify-end">
                             <div className="flex">
                                 <div className="px-2">
                                     <a href="https://twitter.com/trac_btc">

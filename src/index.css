@@ -155,3 +155,82 @@ html {
 {
   background: linear-gradient(180deg, #FF3398 32.79%, #F7931A 85.45%);
 }
+
+body{
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.8;
+    color: #adb5bd;
+    text-align: left;
+    background-color: #fff;
+    width: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available
+}
+
+#page, #content, footer, .pix-top-bar
+{
+  transition: filter 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.main-font-family{
+  font-family: "Manrope" !important;
+
+}
+
+body{
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #333;
+}
+
+html{
+  font-family: var(--pix-body-font), sans-serif !important;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
+    width: 100%;
+    
+}
+
+:root {
+  --pix-dialog-border-radius: 0px;
+  --pix-dialog-padding: 0px;
+  --pix-dialog-close-left: initial;
+  --pix-dialog-close-size: 35px;
+  --pix-dialog-close-color: #eee;
+  --pix-dialog-background-color: none;
+  --pix-dialog-width: calc(var(--pix-container-width, 1140px) / 2);
+  --pix-dialog-height: initial;
+  --pix-dialog-shadow: none;
+  --pix-dialog-margin: auto;
+  --pix-dialog-enter-animation-duration: 300ms;
+  --pix-dialog-exit-animation-duration: 200ms;
+  --pix-dialog-backdrop-bg: rgba(0, 0, 0, 0.8);
+  --pix-dialog-backdrop-filter: none;
+  --pix-launcher-bottom-value: 20px;
+  --pix-launcher-horizontal-value: 20px;
+  --pix-launcher-background-color: #fff;
+  --pix-launcher-color: #333;
+  --pix-launcher-shadow: none;
+  --pix-launcher-padding: 0;
+  --pix-launcher-width: 50px;
+  --pix-launcher-height: 50px;
+  --pix-launcher-border-radius: 100%;
+}
+
+.font-custom{
+  font-family: IBM Plex Mono, sans-serif;
+}
+html{
+  max-height: 100vh;
+  overflow-y: scroll;
+}
+
+.y-transform{
+  --e-transform-translateY:-3px;
+}
+
+.nav-ecosystem{
+  margin-top: 3.5px;
+}
